@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ecommerce Concept ',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
       onGenerateRoute: MyRoutes.instance.onGenerate,
       initialRoute: "/splash_screen",
     );

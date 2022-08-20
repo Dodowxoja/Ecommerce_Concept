@@ -1,4 +1,4 @@
-part of 'splash_screen_cubit.dart';
+part of '../cubit/splash_screen_cubit.dart';
 
 abstract class SplashScreenState {}
 

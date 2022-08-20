@@ -1,13 +1,13 @@
 part of '../cubit/my_cart_cubit.dart';
 
-abstract class MyCartState {}
+abstract class MyHomeState {}
 
-class MyCartInitial extends MyCartState {}
+class MyHomeInitial extends MyHomeState {}
 
-class MyCartLoading extends MyCartState {}
+class MyCartLoading extends MyHomeState {}
 
-class MyCartComplete extends MyCartState {
+class MyCartComplete extends MyHomeState {
   MyCartComplete();
 }
 
-class MyCartError extends MyCartState {}
+class MyCartError extends MyHomeState {}
