@@ -7,7 +7,8 @@ class SplashScreenInitial extends SplashScreenState {}
 class SplashScreenLoading extends SplashScreenState {}
 
 class SplashScreenComplete extends SplashScreenState {
-  SplashScreenComplete();
+  nextPage(BuildContext context) =>
+      Navigator.pushReplacementNamed(context, '/home');
 }
 
 class SplashScreenError extends SplashScreenState {}

@@ -1,4 +1,4 @@
-import 'package:ecommerce/views/home/view/my_home_view.dart';
+import 'package:ecommerce/views/home/view/home_view.dart';
 import 'package:ecommerce/views/cart/view/cart_view.dart';
 import 'package:ecommerce/views/product_details/view/product_details_view.dart';
 import 'package:ecommerce/views/splash_screen/view/splash_screen_view.dart';
@@ -17,7 +17,7 @@ class MyRoutes {
         return MaterialPageRoute(builder: (_) => const MyHomeView());
       case '/product_details':
         return MaterialPageRoute(builder: (_) => const ProductDetailsView());
-      case '/my_cart':
+      case '/cart':
         return MaterialPageRoute(builder: (_) => const MyCartView());
     }
   }
