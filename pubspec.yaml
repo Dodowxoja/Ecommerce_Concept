@@ -31,6 +31,8 @@ flutter:
     - family: Mark Pro
       fonts:
         - asset: assets/fonts/mark_pro.ttf
+          weight: 400
+   
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

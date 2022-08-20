@@ -9,12 +9,15 @@ class MyTextStyleComp {
     fontF = "Mark Pro",
     fontW = FontWeight.normal,
     fontS = FontStyle.normal,
+    double h = 1,
   }) {
     return TextStyle(
-        fontSize: size.sp,
-        color: color ?? ColorsConst.color010035,
-        fontFamily: fontF,
-        fontWeight: fontW,
-        fontStyle: fontS);
+      fontSize: size.sp,
+      color: color ?? ColorsConst.color010035,
+      fontFamily: fontF,
+      fontWeight: fontW,
+      fontStyle: fontS,
+      height: h.h,
+    );
   }
 }

@@ -8,7 +8,7 @@ class SplashScreenLoading extends SplashScreenState {}
 
 class SplashScreenComplete extends SplashScreenState {
   nextPage(BuildContext context) =>
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/cart');
 }
 
 class SplashScreenError extends SplashScreenState {}

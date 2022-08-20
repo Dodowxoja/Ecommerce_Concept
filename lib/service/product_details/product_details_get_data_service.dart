@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ProductDetailsGetDataService {
   Future getData() async {
-    final api = "${ApiConst().api}53539a72-3c5f-4f30-bbb1-6ca10d42c149";
+    final api = "${ApiConst().api}6c14c560-15c6-4248-b9d2-b4508df7d4f5";
     Dio dio = Dio(BaseOptions(validateStatus: (status) => true));
     try {
       Response res = await dio.get(api);
