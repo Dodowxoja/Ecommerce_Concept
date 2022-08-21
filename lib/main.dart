@@ -12,13 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: const Size(414, 951),
       builder: (context, child) {
         return MaterialApp(
           title: 'Ecommerce Concept ',
           debugShowCheckedModeBanner: false,
           onGenerateRoute: MyRoutes.instance.onGenerate,
-          initialRoute: "/splash_screen",
+          initialRoute: "/cart",
         );
       },
     );

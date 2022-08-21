@@ -7,8 +7,8 @@ class CartInitial extends CartState {}
 class CartLoading extends CartState {}
 
 class CartComplete extends CartState {
-  CartComplete();
+  int count = 0;
+  CartComplete(count);
 }
 
 class CartError extends CartState {}
-

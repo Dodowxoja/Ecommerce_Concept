@@ -3,7 +3,7 @@ import 'package:ecommerce/core/constants/colors_const.dart';
 import 'package:ecommerce/mock/cart/cart_product_mock_data.dart';
 import 'package:ecommerce/models/cart/cart_model.dart';
 import 'package:ecommerce/service/cart/cart_get_data_service.dart';
-import 'package:ecommerce/views/cart/cubit/cart_cubit.dart';
+import '../cubit/cart_cubit.dart' show CartCubit, CartState;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,7 +57,10 @@ class _MyCartViewState extends State<MyCartView> {
                         children: [
                           Text(
                             "Add address",
-                            style: MyTextStyleComp.textStyle(),
+                            style: MyTextStyleComp.textStyle(
+                              size: 15,
+                              fontW: FontWeight.w500,
+                            ),
                           ),
                           SizedBox(width: 9.w),
                           InkWell(
@@ -96,8 +99,6 @@ class _MyCartViewState extends State<MyCartView> {
                 // Product
                 Expanded(
                   child: Container(
-                    height: MediaQuery.of(context).size.height.h,
-                    width: MediaQuery.of(context).size.width.w,
                     decoration: BoxDecoration(
                       color: ColorsConst.color010035,
                       borderRadius: BorderRadius.only(
@@ -120,22 +121,22 @@ class _MyCartViewState extends State<MyCartView> {
     return Column(
       children: [
         SizedBox(
-          height: 350.h,
+          height: 473.h,
           width: MediaQuery.of(context).size.width.w,
           child: FutureBuilder(
             future: CartGetDataService.getData(),
             builder: (context, AsyncSnapshot<CartModel> snap) {
               if (!snap.hasData) {
                 return const Center(
-                    // child: CircularProgressIndicator.adaptive(),
+                    // child: CircularProgressIndicator.adaptive()
                     );
               } else if (snap.hasError) {
                 return const Center(child: Text("Error"));
               } else {
                 var data = snap.data!;
                 return SizedBox(
-                  width: MediaQuery.of(context).size.width.w,
                   height: MediaQuery.of(context).size.height.h,
+                  width: MediaQuery.of(context).size.width.w,
                   child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     padding: EdgeInsets.fromLTRB(33.r, 34.r, 32.25.r, 0.r),
@@ -201,9 +202,8 @@ class _MyCartViewState extends State<MyCartView> {
                                     ),
                                   ],
                                 ),
-                              ), //Product count
+                              ),
                               //Product count
-                              // SizedBox(width: 27.r),
                               Container(
                                 height: 72.h,
                                 width: 26.w,
@@ -221,20 +221,9 @@ class _MyCartViewState extends State<MyCartView> {
                                         color: ColorsConst.colorWhite,
                                         size: 16.sp,
                                       ),
-                                      onTap: () {
-                                        print(CartProductMockData.count[index]);
-                                        if (CartProductMockData.count[index] ==
-                                            index) {
-                                          CartProductMockData.count[index] == 0
-                                              ? CartProductMockData.count[index]
-                                                  ["count"] = 0
-                                              : CartProductMockData.count[index]
-                                                          ["count"]!
-                                                      .toInt() -
-                                                  1;
-                                        }
-                                        setState(() {});
-                                      },
+                                      onTap: () => context
+                                          .read<CartCubit>()
+                                          .productCountRemove(index),
                                     ),
                                     Text(
                                       "${CartProductMockData.count[index]["count"]}",
@@ -250,22 +239,9 @@ class _MyCartViewState extends State<MyCartView> {
                                         size: 16.sp,
                                       ),
                                       onTap: () {
-                                        print(CartProductMockData.count[index]
-                                            ["count"]);
-                                        if (CartProductMockData.count[index] ==
-                                            index) {
-                                          if (CartProductMockData
-                                                  .count[index] !=
-                                              9) {
-                                            CartProductMockData.count[index]
-                                                        ["count"]!
-                                                    .toInt() +
-                                                1;
-                                          }
-                                          CartProductMockData.count[index]
-                                              ["count"] = 9;
-                                        }
-                                        setState(() {});
+                                        context
+                                            .read<CartCubit>()
+                                            .productCountAdd(index);
                                       },
                                     ),
                                   ],
@@ -337,13 +313,17 @@ class _MyCartViewState extends State<MyCartView> {
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: ColorsConst.colorFF6E4E,
-                    fixedSize: Size(293.w, 56.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r),
-                    )),
+                  primary: ColorsConst.colorFF6E4E,
+                  fixedSize: Size(293.w, 56.h),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                ),
                 onPressed: () {},
-                child: Text("Checkout"),
+                child: Text(
+                  "Checkout",
+                  style: MyTextStyleComp.textStyle(),
+                ),
               ),
             ],
           ),

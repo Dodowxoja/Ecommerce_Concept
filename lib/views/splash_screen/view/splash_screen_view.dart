@@ -12,54 +12,56 @@ class SplashScreensView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SplashScreenCubit(context),
-      child: Scaffold(
-        backgroundColor: ColorsConst.color010035,
-        body: BlocConsumer<SplashScreenCubit, SplashScreenState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            return Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 10.r),
-                        child: CircleAvatar(
-                          radius: 66.r,
-                          backgroundColor: ColorsConst.colorFF6E4E,
+      child: SizedBox(
+        child: Scaffold(
+          backgroundColor: ColorsConst.color010035,
+          body: BlocConsumer<SplashScreenCubit, SplashScreenState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 10.r),
+                          child: CircleAvatar(
+                            radius: 66.r,
+                            backgroundColor: ColorsConst.colorFF6E4E,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SizedBox(
-                        height: 132.h,
-                        width: MediaQuery.of(context).size.width * 0.8.w,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            "Ecommerce\nConcept",
-                            style: MyTextStyleComp.textStyle(
-                              size: 30,
-                              fontW: FontWeight.w800,
-                              color: ColorsConst.colorWhite,
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: SizedBox(
+                          height: 132.h,
+                          width: MediaQuery.of(context).size.width * 0.8.w,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "Ecommerce\nConcept",
+                              style: MyTextStyleComp.textStyle(
+                                size: 30,
+                                fontW: FontWeight.w800,
+                                color: ColorsConst.colorWhite,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          },
+                    ],
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
