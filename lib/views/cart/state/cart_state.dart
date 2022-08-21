@@ -8,7 +8,8 @@ class CartLoading extends CartState {}
 
 class CartComplete extends CartState {
   int count = 0;
-  CartComplete(count);
+  int price = 0;
+  CartComplete(count,price);
 }
 
 class CartError extends CartState {}

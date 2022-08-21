@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce/core/constants/api_const.dart';
 import 'package:ecommerce/models/cart/cart_model.dart';
-import 'package:flutter/material.dart';
 
 class CartGetDataService {
   static Future<CartModel> getData() async {
@@ -12,8 +11,7 @@ class CartGetDataService {
       if (res.statusCode == 200) {
         return CartModel.fromJson(res.data);
       } else {
-        debugPrint("Internet Server Error");
-        return res.data;
+        throw "Internet Server Error";
       }
     } catch (e) {
       rethrow;

@@ -9,5 +9,7 @@ class ColorsConst {
   static Color colorCCCCCC = const Color(0xFFCCCCCC);
   static Color colorWhite = const Color(0xFFFFFFFF);
 
+  static Color color36364D = const Color(0xFF36364D);
+
   // static Color color = const Color(0xFF);
 }

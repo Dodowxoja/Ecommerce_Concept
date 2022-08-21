@@ -215,16 +215,20 @@ class _MyCartViewState extends State<MyCartView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
+                                    //Remove
                                     InkWell(
                                       child: Icon(
                                         Icons.remove,
                                         color: ColorsConst.colorWhite,
                                         size: 16.sp,
                                       ),
-                                      onTap: () => context
-                                          .read<CartCubit>()
-                                          .productCountRemove(index),
+                                      onTap: () {
+                                        context
+                                            .read<CartCubit>()
+                                            .productCountRemove(index);
+                                      },
                                     ),
+                                    //Count
                                     Text(
                                       "${CartProductMockData.count[index]["count"]}",
                                       style: MyTextStyleComp.textStyle(
@@ -232,6 +236,7 @@ class _MyCartViewState extends State<MyCartView> {
                                         color: ColorsConst.colorWhite,
                                       ),
                                     ),
+                                    //Add
                                     InkWell(
                                       child: Icon(
                                         Icons.add,
@@ -246,6 +251,10 @@ class _MyCartViewState extends State<MyCartView> {
                                     ),
                                   ],
                                 ),
+                              ),
+                              SizedBox(width: 17.w),
+                              InkWell(
+                                child: Icon(Icons.delete,color: ColorsConst.color36364D,),
                               )
                             ],
                           ),
@@ -267,36 +276,60 @@ class _MyCartViewState extends State<MyCartView> {
           ),
         ),
         SizedBox(height: 15.h),
+        //Price
         Padding(
           padding: EdgeInsets.only(left: 55.r, right: 35.r),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Total",
-                style: MyTextStyleComp.textStyle(color: ColorsConst.colorWhite),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Total",
+                    style: MyTextStyleComp.textStyle(
+                      color: ColorsConst.colorWhite,
+                    ),
+                  ),
+                  SizedBox(height: 12.h),
+                  Text(
+                    "Delivery",
+                    style: MyTextStyleComp.textStyle(
+                        color: ColorsConst.colorWhite),
+                  ),
+                ],
               ),
-              Text(
-                "\$0000",
-                style: MyTextStyleComp.textStyle(color: ColorsConst.colorWhite),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 12.h),
-        Padding(
-          padding: EdgeInsets.only(left: 55.r, right: 57.r),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Delivery",
-                style: MyTextStyleComp.textStyle(color: ColorsConst.colorWhite),
-              ),
-              Text(
-                "Free",
-                style: MyTextStyleComp.textStyle(color: ColorsConst.colorWhite),
-              ),
+              SizedBox(
+                height: 50.h,
+                child: FutureBuilder(
+                  future: CartGetDataService.getData(),
+                  builder: (context, AsyncSnapshot<CartModel> snap) {
+                    if (snap.hasData) {
+                      var data = snap.data!;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "\$${CartProductMockData.price["price"]} us", //data.total
+                            style: MyTextStyleComp.textStyle(
+                              color: ColorsConst.colorWhite,
+                            ),
+                          ),
+                          SizedBox(height: 12.h),
+                          Text(
+                            "${data.delivery}",
+                            style: MyTextStyleComp.textStyle(
+                              color: ColorsConst.colorWhite,
+                            ),
+                          ),
+                        ],
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                ),
+              )
             ],
           ),
         ),
@@ -306,6 +339,7 @@ class _MyCartViewState extends State<MyCartView> {
           child: Divider(color: ColorsConst.colorWhite.withOpacity(0.2)),
         ),
         SizedBox(height: 15.h),
+        //Checkout
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 44.r),
           child: Row(
@@ -314,7 +348,7 @@ class _MyCartViewState extends State<MyCartView> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: ColorsConst.colorFF6E4E,
-                  fixedSize: Size(293.w, 56.h),
+                  fixedSize: Size(326.w, 56.h),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.r),
                   ),
@@ -322,12 +356,16 @@ class _MyCartViewState extends State<MyCartView> {
                 onPressed: () {},
                 child: Text(
                   "Checkout",
-                  style: MyTextStyleComp.textStyle(),
+                  style: MyTextStyleComp.textStyle(
+                    fontW: FontWeight.w700,
+                    size: 20,
+                    color: ColorsConst.colorWhite,
+                  ),
                 ),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
